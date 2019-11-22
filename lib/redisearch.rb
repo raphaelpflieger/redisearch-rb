@@ -19,7 +19,7 @@ class RediSearch
     del: [:dd],
     drop: [:keepdocs],
     search: [:nocontent, :verbatim, :nostopwords, :withscores, :withsortkeys],
-    sugadd: [:incr],
+    sugadd: [:payload, :incr],
     sugget: [:fuzzy, :withscores, :withpayloads],
   }
 
