@@ -229,7 +229,7 @@ class RediSearch
   # @return [mixed] The output returned by redis
   def call(command)
     raise ArgumentError.new("unknown/unsupported command '#{command.first}'") unless valid_command?(command.first)
-    puts "Will call Redis with command : #{command.flatten}
+    puts "Will call Redis with command : #{command.flatten}"
     @redis.with_reconnect { @redis.call(command.flatten) }
   end
 
