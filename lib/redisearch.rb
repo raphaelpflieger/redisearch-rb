@@ -230,7 +230,7 @@ class RediSearch
   # @return [mixed] The output returned by redis
   def call(command)
     raise ArgumentError.new("unknown/unsupported command '#{command.first}'") unless valid_command?(command.first)
-    puts "Will call Redis with command : #{command.flatten}"
+    #puts "Will call Redis with command : #{command.flatten}"
     @redis.with_reconnect { @redis.call(command.flatten) }
   end
 
@@ -293,7 +293,7 @@ class RediSearch
   end
 
   def ft_sugadd(dict_name, content, score, opts)
-    puts "ft_sugadd / dict_name : #{dict_name}, content : #{content}, score : #{score}, opts : #{opts}"
+    #puts "ft_sugadd / dict_name : #{dict_name}, content : #{content}, score : #{score}, opts : #{opts}"
     ['FT.SUGADD', dict_name , content, score, *serialize_options(opts, :sugadd)]
   end
 
@@ -311,18 +311,18 @@ class RediSearch
 
   def serialize_options(opts, method)
     serialized_options = [flags_for_method(opts, method), params_for_method(opts, method)].flatten.compact
-    puts "serialized_options : #{serialized_options}"
+    #puts "serialized_options : #{serialized_options}"
     serialized_options
   end
 
   def flags_for_method(opts, method)
-    puts "flags_for_method(opts, method)"
-    puts "opts: #{opts}"
-    puts "method: #{method}"
-    puts "OPTIONS_FLAGS[method]: #{OPTIONS_FLAGS[method]}"
+    #puts "flags_for_method(opts, method)"
+    #puts "opts: #{opts}"
+    #puts "method: #{method}"
+    #puts "OPTIONS_FLAGS[method]: #{OPTIONS_FLAGS[method]}"
     OPTIONS_FLAGS[method].to_a.map do |key|
-      puts "key: #{key}"
-      puts "opts[key]: #{opts[key]}"
+      #puts "key: #{key}"
+      #puts "opts[key]: #{opts[key]}"
       key.to_s.upcase if opts[key]
     end.compact
   end
