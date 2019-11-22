@@ -30,7 +30,7 @@ class RediSearch
     addhash: [:language],
     create: [:stopwords],
     search: [:filter, :return, :infields, :inkeys, :slop, :scorer, :sortby, :limit, :payload],
-    sugget: [:max],
+    sugget: [:max, :payload],
   }
 
   # Create RediSearch client instance
