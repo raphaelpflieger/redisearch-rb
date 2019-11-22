@@ -292,6 +292,7 @@ class RediSearch
   end
 
   def ft_sugadd(dict_name, content, score, opts)
+    puts "ft_sugadd / dict_name : #{dict_name}, content : #{content}, score : #{score}, opts : #{opts}"
     ['FT.SUGADD', dict_name , content, score, *serialize_options(opts, :sugadd)]
   end
 
@@ -304,12 +305,13 @@ class RediSearch
   end
 
   def ft_sugget(dict_name, prefix,opts)
-    ['FT.SUGGET', dict_name , prefix, ["WITHSCORES", "FUZZY", "WITHPAYLOADS"]]
-    #['FT.SUGGET', dict_name , prefix, *serialize_options(opts, :sugget)]
+    ['FT.SUGGET', dict_name , prefix, *serialize_options(opts, :sugget)]
   end
 
   def serialize_options(opts, method)
-     [flags_for_method(opts, method), params_for_method(opts, method)].flatten.compact
+    serialized_options = [flags_for_method(opts, method), params_for_method(opts, method)].flatten.compact
+    puts "serialized_options : #{serialized_options}"
+    serialized_options
   end
 
   def flags_for_method(opts, method)
