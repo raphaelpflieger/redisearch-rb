@@ -20,7 +20,7 @@ class RediSearch
     drop: [:keepdocs],
     search: [:nocontent, :verbatim, :nostopwords, :withscores, :withsortkeys],
     sugadd: [:incr],
-    sugget: [:fuzzy, :withscores],
+    sugget: [:fuzzy, :withscores, :withpayloads],
   }
 
   # Params options need an array with the values for the option
