@@ -303,7 +303,8 @@ class RediSearch
   end
 
   def ft_sugget(dict_name, prefix,opts)
-    ['FT.SUGGET', dict_name , prefix, *serialize_options(opts, :sugget)]
+    ['FT.SUGGET', dict_name , prefix, ["WITHSCORES", "FUZZY", "WITHPAYLOADS"]]
+    #['FT.SUGGET', dict_name , prefix, *serialize_options(opts, :sugget)]
   end
 
   def serialize_options(opts, method)
