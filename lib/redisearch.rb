@@ -315,7 +315,13 @@ class RediSearch
   end
 
   def flags_for_method(opts, method)
+    puts "flags_for_method(opts, method)"
+    puts "opts: #{opts}"
+    puts "method: #{method}"
+    puts "OPTIONS_FLAGS[method]: #{OPTIONS_FLAGS[method]}"
     OPTIONS_FLAGS[method].to_a.map do |key|
+      puts "key: #{key}"
+      puts "opts[key]: #{opts[key]}"
       key.to_s.upcase if opts[key]
     end.compact
   end
