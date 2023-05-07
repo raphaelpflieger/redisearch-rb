@@ -231,7 +231,10 @@ class RediSearch
   def call(command)
     raise ArgumentError.new("unknown/unsupported command '#{command.first}'") unless valid_command?(command.first)
     #puts "Will call Redis with command : #{command.flatten}"
-    @redis.with_reconnect { @redis.call(command.flatten) }
+    # with_reconnect not working with updated redis 4 (was working with redis 3)
+    # /usr/local/bundle/gems/redis-client-0.14.1/lib/redis_client/connection_mixin.rb:35:in `call': ERR unknown command `with_reconnect`, with args beginning with:  (Redis::CommandError)
+    #@redis.with_reconnect { @redis.call(command.flatten) }
+    @redis.call(command.flatten)
   end
 
   private
